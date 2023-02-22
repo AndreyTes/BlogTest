@@ -1,0 +1,29 @@
+<div class="card" style="margin-bottom: 10px" id="<%= dom_id post %>">
+  <div class="card-header">
+    Username:  <%=post.user.name%> 
+  </div>
+  <div class="card-body container">
+    <div class="row">
+      <div class="col-6">
+        <p class="card-text">Created at <%= post.created_at.strftime("%Y-%m-%d %I:%M%P") %></p>
+        <h5 class="card-title">Title:  <%= post.title %></h5>
+        <p class="card-text">Description:  <%= post.description %></p>
+        <% if post.user_id == current_user.id %> 
+          <%= form_with(model: post) do |form| %>
+            <div>
+              <%= form.label :add_image, style: "display: block" %>
+              <%= form.file_field :image %>
+            </div>
+            <%= form.submit class: "btn btn-primary"%>
+          <% end %>  
+        
+      </div>
+      <div class="col-2">
+        <div class="card-image">
+        <%= image_tag post.image, style: "height:200px; wigth: 200px" if post.image.present?%>
+        </div>
+      </div>
+         <% end %>
+    </div>
+  </div>
+</div>
