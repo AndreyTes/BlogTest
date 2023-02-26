@@ -11,22 +11,38 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div>
-    <%= form.label :image, style: "display: block" %>
-    <%= form.file_field :image %>
-  </div>
-
+  <div class="card" style="margin-bottom: 10px">
+    <div class="card-header">
+      Username:  <%=@post.user.name%> 
+    </div>
+    <div class="card-body container">
+      <div class="row">
+          <div class="col-6">
+            <div>
+              <%= form.label :title, style: "display: block" %>
+              <%= form.text_field :title, placeholder: 'add text' %>
+            </div>
+            <div>
+              <%= form.label :description, style: "display: block" %>
+              <%= form.text_field :description, placeholder: 'add text' %>
+            </div>
+            <div>
+              <%= form.label :image, style: "display: block" %>
+              <%= form.file_field :image %>
+            </div>
+         </div>
+         <div class="col-2">
+            <div class="card-image">
+              <%= image_tag post.image, style: "height:200px; wigth: 200px" if post.image.present?%>
+            </div>
+         </div>
+      </div>
+    </div>
+  </div>  
   <div>
     <%= form.submit %>
   </div>
+<% end %>
+<% if post.id.present? %>
+  <%= button_to "Delete image", {controller: :posts, action: 'delete_image', id: post.id}, method: :delete %>
 <% end %>

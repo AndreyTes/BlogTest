@@ -3,5 +3,7 @@ class Post < ApplicationRecord
   has_one_attached :image, dependent: :destroy
   self.per_page = 3
 
-  scope :filter_by_current_user, -> (user) { where user_id: user.id }
+  scope :filter_by_current_user, ->(user) { where user_id: user.id }
+
+  validates :title, :description, presence: true
 end
