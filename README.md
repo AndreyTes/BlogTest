@@ -6,7 +6,7 @@ To start application:
 
 * Run rails db:create
 
-* Run rails db:migeate
+* Run rails db:migrate
 
 * Run rails db:seed
 
